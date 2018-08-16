@@ -1,10 +1,3 @@
-from flask import Flask, json
-import matplotlib.pyplot as plt
-import numpy as np
-import pickle
-from sklearn import datasets, linear_model
-from sklearn.metrics import mean_squared_error, r2_score
-import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import pickle
@@ -14,35 +7,6 @@ import pandas as pd
 from sklearn import tree
 
 pkl_filename = "pickle_model.pkl"
-
-appName = 'fullstarks'
-
-my_dev_host = '0.0.0.0'
-my_dev_port = 5000
-
-app = Flask(appName)
-
-pkl_filename = "pickle_model.pkl"
-
-
-def setup_app(app):
-    return 1
-
-@app.route('/')
-def home():
-    return 'home'
-
-
-@app.route('/health-check')
-def health_check():
-    return "Hello, I'm alive!"
-
-
-@app.route('/emotions')
-def emotion(emotions):
-    data = json.loads(emotions)
-    return predict(data.data)
-
 
 def commitmentTrain():
     df = pd.read_csv('out.csv')
@@ -92,10 +56,3 @@ def predict(emotions):
         pickle_model.predict(emotions)
 
 commitmentTrain()
-
-setup_app(app)
-commitmentTrain()
-
-if __name__ == '__main__':
-    app.run(host=my_dev_host, port=my_dev_port)
-
