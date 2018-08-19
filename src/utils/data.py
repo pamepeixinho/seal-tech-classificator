@@ -65,7 +65,10 @@ class Data:
         subject_weight = 2
         didactics_weight = 1
         rythm_weight = 1
+<<<<<<< HEAD
         qt_questions_used = 7
+=======
+>>>>>>> cleaning data in repo
 
         total_sum = commitment_weight + subject_weight + didactics_weight + rythm_weight
 
@@ -80,7 +83,11 @@ class Data:
                                 (didactics_weight * sum_didactics) +
                                 (rythm_weight * sum_rythm))
 
+<<<<<<< HEAD
             person['commitment_score'] = (commitment_score / total_sum) * (1.0/qt_questions_used)
+=======
+            person['commitment_score'] = (commitment_score / total_sum) * (1.0 / 35)
+>>>>>>> cleaning data in repo
 
             del person['attention']
             del person['continueVideosLikeThis']
