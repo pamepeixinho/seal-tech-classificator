@@ -103,33 +103,33 @@ for column in all_data.select_dtypes(include=[np.object]).columns:
 x = np.arange(4)
 
 
-epochs = 100
-learning_rate = 0.05
-hidden_nodes = 20
-output_nodes = 1
-
-N_i = train.shape[1]
-network = RedeNeural(N_i, hidden_nodes, output_nodes, learning_rate)
-
-losses = {'train': [], 'validation': []}
-for e in range(epochs):
-    batch = np.random.choice(train_features.index, size=128)
-
-    foo = train_targets.ix[batch]['engagement'].values
-    print(foo)
-
-    for record, target in zip(train_features.index[batch].values, foo): network.train(record, target)
-
-    foo2 = train_targets.ix[batch]['engagement'].values
-    train_loss = EQMedio(network.run(train_features), train_targets['engagement'].values)
-    val_loss = EQMedio(network.run(val_features), val_targets['engagement'].values)
-    sys.stdout.write("\rProgress: " + str(100 * e / float(epochs))[:4] \
-                     + "% ... Training loss: " + str(train_loss)[:5] \
-                     + " ... Validation loss: " + str(val_loss)[:5])
-
-    losses['train'].append(train_loss)
-    losses['validation'].append(val_loss)
-
-y = data.as_matrix(columns=data.columns[0:1])
-x = data.as_matrix(columns=data.columns[1:])
+# epochs = 100
+# learning_rate = 0.05
+# hidden_nodes = 20
+# output_nodes = 1
+#
+# N_i = train.shape[1]
+# network = RedeNeural(N_i, hidden_nodes, output_nodes, learning_rate)
+#
+# losses = {'train': [], 'validation': []}
+# for e in range(epochs):
+#     batch = np.random.choice(train_features.index, size=128)
+#
+#     foo = train_targets.ix[batch]['engagement'].values
+#     print(foo)
+#
+#     for record, target in zip(train_features.index[batch].values, foo): network.train(record, target)
+#
+#     foo2 = train_targets.ix[batch]['engagement'].values
+#     train_loss = EQMedio(network.run(train_features), train_targets['engagement'].values)
+#     val_loss = EQMedio(network.run(val_features), val_targets['engagement'].values)
+#     sys.stdout.write("\rProgress: " + str(100 * e / float(epochs))[:4] \
+#                      + "% ... Training loss: " + str(train_loss)[:5] \
+#                      + " ... Validation loss: " + str(val_loss)[:5])
+#
+#     losses['train'].append(train_loss)
+#     losses['validation'].append(val_loss)
+#
+# y = data.as_matrix(columns=data.columns[0:1])
+# x = data.as_matrix(columns=data.columns[1:])
 data.columns[0:]
