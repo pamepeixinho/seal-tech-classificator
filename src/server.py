@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, request, jsonify
+from commitmentClassificator import NeuralNetworks
 
 appName = 'FocaAi'
 
@@ -33,6 +34,12 @@ def dashboard():
     # develop it
     return True
 
+
+@app.route('/classificate')
+def classificate():
+    emotions = request.args
+    commitment = NeuralNetworks.classificate(emotions=emotions)
+    return jsonify(commitment=commitment)
 
 setup_app(app)
 
