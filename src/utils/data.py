@@ -80,7 +80,7 @@ class Data:
                                 (didactics_weight * sum_didactics) +
                                 (rythm_weight * sum_rythm))
 
-            person['commitment_score'] = (commitment_score / total_sum) * (1.0/qt_questions_used)
+            person['commitment_score'] = (commitment_score / total_sum) * (1.0 / 35)
 
             del person['attention']
             del person['continueVideosLikeThis']
