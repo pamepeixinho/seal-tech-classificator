@@ -37,6 +37,8 @@ class Predictor:
         self.clf.fit(self.inputs, self.targets)
         self._save_model()
 
+    def predict(self, emotions):
+        return self.clf.predict(emotions)
 
 predictor = Predictor()
 predictor.train()

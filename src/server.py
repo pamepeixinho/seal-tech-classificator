@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from commitmentClassificator import NeuralNetworks
+from TestingScikitLearn import Predictor
 
 appName = 'FocaAi'
 
@@ -8,6 +9,8 @@ my_dev_port = 5000
 
 app = Flask(appName)
 
+globalPredictor = Predictor()
+globalPredictor.load_model()
 
 def setup_app(app):
     return 1
@@ -40,6 +43,21 @@ def classificate():
     emotions = request.args
     commitment = NeuralNetworks.classificate(emotions=emotions)
     return jsonify(commitment=commitment)
+
+
+@app.route('/prediction-train')
+def predictionTrain():
+    predictor = Predictor()
+    predictor.train()
+    globalPredictor.load_model()
+
+
+@app.route('/predict')
+def predict():
+    print(request.data)
+    predictedCommitment = globalPredictor.predict(request.data)
+    return jsonify(commitment=predictedCommitment)
+
 
 setup_app(app)
 
